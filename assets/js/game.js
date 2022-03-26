@@ -18,8 +18,9 @@ var fightOrSkip = function () {
         // if yes (true), leave fight
         if (confirmSkip) {
             window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
-            // subtract money from playerMoney for skipping
-            playerInfo.playerMoney = playerInfo.money - 10;
+            // subtract money from money for skipping
+            playerInfo.money = playerInfo.money - 10;
+            console.log(playerInfo.money);
             
             return true;
         }
@@ -123,19 +124,17 @@ var shop = function () {
     var shopOptionPrompt = window.prompt(
         "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
     );
+    shopOptionPrompt = parseInt(shopOptionPrompt);
 
     // use switch to carry out action
     switch (shopOptionPrompt) {
-        case "REFILL":
-        case "refill":
+        case 1:
             playerInfo.refillHealth();
             break;
-        case "UPGRADE":
-        case "upgrade":
+        case 2:
             playerInfo.upgradeAttack();
             break;
-        case "LEAVE":
-        case "leave":
+        case 3:
             window.alert("Leaving the store.");
 
             // do nothing, so function will end
@@ -203,6 +202,7 @@ var playerInfo = {
             window.alert("Refilling player's health by 20 for 7 dollars.")
             this.health += 20;
             this.money -= 7;
+            console.log(this.money);
         }
         else {
             window.alert("You don't have enough money!")
@@ -213,6 +213,7 @@ var playerInfo = {
             window.alert("Upgrading player's attack by 6 for 7 dollars.")
             this.attack += 6;
             this.money -= 7;
+            console.log(this.money);
         }
         else {
             window.alert("You don't have enough money!")
@@ -221,7 +222,7 @@ var playerInfo = {
 };
 
 // You can also log multiple values at once like this
-console.log(playerInfo.name, playerInfo.attack, playerInfo.health);
+console.log(playerInfo.name, playerInfo.attack, playerInfo.health, playerInfo.money);
 
 var enemyInfo = [
     {
